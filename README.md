@@ -1,16 +1,92 @@
-# React + Vite
+# IGM CRM – Lightweight Field Sales CRM (PWA)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+IGM CRM is a lightweight CRM-style Progressive Web App built for a real field sales workflow (my dad’s day-to-day sales tracking).
 
-Currently, two official plugins are available:
+The goal was simple:  
+**log visits fast, remember last conversations, and never miss follow-ups** — without paying for heavy CRM tools.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The app runs as an installable web app (PWA), stores data locally on the device, and uses iPhone Calendar reminders for reliable notifications.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
 
-## Expanding the ESLint configuration
+- Clients list with search  
+- Client detail view with:
+  - last meeting summary  
+  - visit history  
+  - open follow-ups  
+- Log visits with typed notes  
+- Follow-ups dashboard:
+  - overdue  
+  - today  
+  - next 7 days  
+- CSV import for clients and visits (from Google Sheets / Excel exports)  
+- Add follow-ups to iPhone Calendar via `.ics` export  
+- Installable on iPhone as a home-screen app (PWA)  
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Tech Stack
+
+- React + Vite  
+- Tailwind CSS  
+- IndexedDB (local persistence, no backend)  
+- iCalendar (.ics) export for reminders  
+- Deployed on Vercel  
+
+---
+
+## Why this approach
+
+- **No backend**: avoids cloud cost and complexity for a single-user workflow  
+- **Local storage**: data stays on the user’s phone  
+- **Calendar reminders**: more reliable than free web push notifications on iOS  
+- **PWA**: app-like experience without App Store fees  
+
+---
+
+## Run locally
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## CSV Import Format
+
+### Clients CSV
+```
+Client, City, State, Contact, Phone, Email, Segment, Status, Notes
+```
+
+### Visits CSV
+```
+Date, Client, Touch Type, Outcome, Products, Signal, Next Action, Follow-up Date, Priority
+```
+
+---
+
+## Limitations
+
+- Data is stored per device (IndexedDB)  
+- No cloud sync or multi-user support yet  
+- Calendar reminders require manual “Add to Calendar” action  
+
+---
+
+## Planned improvements (after real usage feedback)
+
+- Better import validation and deduplication  
+- Export / backup data  
+- Optional cloud sync  
+- Smart summaries and follow-up suggestions (ML)  
+
+---
+
+## Status
+
+Actively used in real sales workflow.  
+Next steps depend on feedback after extended usage.
